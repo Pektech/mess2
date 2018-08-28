@@ -1,0 +1,17 @@
+welcome: "Welcome to Family Messages. Will you please tell me your name?"
+
+name: "Thank you {{ my_name }}. Would you like to check messages or leave a message?"
+
+check_msg: '''Okay {{ my_name }} you have {{ count_msg }} messages. First message is from
+{{my_msg_list[0].fam_sent}}. The message is {{ my_msg_list[0].message }}. Say next to hear
+ more, or Repeat to hear again or Leave message to well leave a message'''
+
+no_messages: '''Sorry {{ my_name }} there are no messages for you.
+ Would you like to leave a message?'''
+
+
+drink_ready: "Ok, your {{ amount }} {{ drink }} will be ready soon"
+
+stop: "See you later"
+
+cancel: "You interrupted the skill, bye"

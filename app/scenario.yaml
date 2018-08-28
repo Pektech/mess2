@@ -1,0 +1,93 @@
+################## Scenario description ##############################
+# At first initial and finish scenario steps must be set.
+# After that describe each step of your scenario in a declarative way
+######################################################################
+
+# start and finish steps in scenario
+first_step: init
+last_step: done
+default_help:
+  - "I can check for your messages or save a message for someone else.
+  Just say Check Messages or I want to save a message"
+  - "Hi, Would you like to hear your messages or leave a message? "
+
+
+steps:
+  # minimal description for the first step
+  init:
+    events:
+      launched:
+        next: get_name
+
+  # step name
+  get_name:
+    # if wrong intent was invoked, ask user again with one of the phrases (random choice)
+    reprompt:
+      - "Sorry, I need your first name so I can check for messages or leave a message"
+      - "Please, wont you tell me your name?"
+    # help phrases for the current step
+    help:
+      - "Telling me your name helps me find your messages"
+      - "If I know your name I can look up your messages or you can leave a message for someone.
+       But nobody like anonymous messages"
+    events:
+      # event trigger #1
+      my_name:
+      # where to move from here?
+        next: check_or_save
+      # event trigger #2
+      #choose_coffee:
+        #next: coffee_strength_choice
+
+  check_or_save:
+    reprompt:
+      - "Sorry I need to know if you want to check your messages or leave one"
+      - "hmmm if you say check messages I can check them for you or if you say leave message, I'll make sure it gets to the right person"
+    help:
+      - "You need to decide wether to check messages or leave a message. Say: Name  or Leave message"
+      - "Just say: Name or leave message"
+    events:
+      # event trigger #1
+      check_msg:
+      #where to move from here?
+        next: test
+      # event trigger 2
+      leave_msg:
+        next : done
+
+
+
+  test:
+    reprompt:
+      - "asking continue"
+    help:
+      - "wants yes or no"
+    events:
+      yesno:
+        next: done
+
+#  coffee_strength_choice:
+#    reprompt:
+#      - "Sorry, I didn't understand, what is your desired coffee strength?"
+#      - "Say it again, what coffee strength do you prefer?"
+#    help:
+#      - "Say brew it weak or brew it strong"
+#      - "Please define coffee strength: weak or strong?"
+#    events:
+#      choose_coffee_strength:
+#        next: drink_amount_choice
+#
+#  drink_amount_choice:
+#    reprompt:
+#      - "Sorry, I didn't understand, how big your drink must be?"
+#      - "Please say, should it be small or big?"
+#    help:
+#      - "On the current step you need to choose amount of your drink"
+#      - "Say small or big"
+#
+#    events:
+#      choose_drink_amount:
+#        next: done
+
+# no need to describe last step
+  done:
