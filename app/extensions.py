@@ -4,6 +4,7 @@ from flask_ask import Ask
 from flask_marshmallow import Marshmallow
 from afg import Supervisor
 
+
 db = SQLAlchemy()
 migrate = Migrate()
 #ask = Ask(app, '/')

@@ -19,8 +19,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     print(config[config_name])
-    ask = Ask(app, '/')
-    sup = Supervisor('app/scenario.yaml')
+
     register_extensions(app)
 
 
@@ -30,7 +29,8 @@ def create_app():
 def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db)
-
+    #ask = Ask(app, '/')
+    #sup = Supervisor('app/scenario.yaml')
 
     ma.init_app(app)
 
